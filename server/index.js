@@ -20,7 +20,7 @@ app.use(fileupload({
     tempFileDir: '/tmp/'
 }));
 
-app.use('/api/v1/', pdfRoutes);
+app.use('/api/v1', pdfRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

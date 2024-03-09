@@ -47,7 +47,7 @@ exports.mergePdfs = async (req, res) => {
 
         const mergedPdf = await pdfDoc.save();
 
-        const path = __dirname + '/mergedFiles/' + `.${file1.name.split('.')[0]}&${file2.name.split('.')[0]}` + '.pdf';
+        const path = __dirname + '/mergedFiles/' + `${file1.name.split('.')[0]}&${file2.name.split('.')[0]}` + '.pdf';
         
         writeFileSync(path, mergedPdf);
         
@@ -61,3 +61,33 @@ exports.mergePdfs = async (req, res) => {
         res.status(500).send(error);
     }
 }
+
+exports.selectedPagesByIndex = async (req, res) => {
+    try{
+        const file = req.files.file;
+        const ind = req.body.indexes;
+        const indexes = ind.split(',').map(Number);
+        const fileBuffer = readFileSync(file.tempFilePath);
+        const pdfDoc = await PDFDocument.load(fileBuffer);
+        
+        const newPdf = await PDFDocument.create();
+        const copiedPages = await newPdf.copyPages(pdfDoc, indexes);
+        copiedPages.forEach((page) => {
+            newPdf.addPage(page);
+        });
+       
+        const path = __dirname + '/selectedByIndexFiles/' + `.${file.name.split('.')[0]}` + '.pdf';
+
+        const pdfBytes = await newPdf.save();
+        writeFileSync(path, pdfBytes);
+
+        res.json({
+            success: true,
+            msg: 'Selected pages extracted successfully'
+        });
+    }
+    catch(error){
+        res.status(500).send(error);
+    }
+}
+    
