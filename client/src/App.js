@@ -1,10 +1,49 @@
 import './App.css';
-import Home from './components/Home';
+import Home from '../src/components/Home'
+import {createBrowserRouter, RouterProvider,} from "react-router-dom";
+import LocalFileUpload from '../src/components/LocalFileUpload'
+import Navbar from '../src/components/Navbar'
+import MergePdfs from './components/MergePdfs';
+import GetPdf from './components/GetPdf';
+
 
 function App() {
+
+  const router = createBrowserRouter(
+      [
+          {
+              path: "/",
+              element: <Navbar/>,
+              children:[
+                {
+                  path: "/",
+                  element: <Home/>,
+                },
+                {
+                  path: "/localfileupload",
+                  element: <LocalFileUpload/>,
+                },
+                {
+                  path: "/mergePdfs",
+                  element: <MergePdfs/>,
+                },
+                {
+                  path: '/getPdf',
+                  element: <GetPdf/>
+                }
+              ]
+          },
+          {
+              path: "/localfileupload",
+              element: <LocalFileUpload/>,
+              
+          },
+      ]
+  )
+
   return (
     <div>
-      <Home />
+        <RouterProvider router={router}/>
     </div>
   );
 }
