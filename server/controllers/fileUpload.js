@@ -9,7 +9,7 @@ exports.localFileUpload = async (req, res) => {
         console.log("file -> " + file);
 
         //create path for file
-        let path = __dirname + '/files/' + Date.now() + `.${file.name.split('.')[1]}`;
+        let path = __dirname + '/files/' + `${file.name}`;
         console.log("path -> " + path);
 
         //move file to path
