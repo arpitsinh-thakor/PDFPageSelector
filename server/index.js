@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect(process.env.URI)
+// mongoose.connect(process.env.URI)
 
 const fileupload = require('express-fileupload');
 app.use(fileupload({

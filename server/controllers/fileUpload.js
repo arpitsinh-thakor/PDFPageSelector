@@ -90,4 +90,15 @@ exports.selectedPagesByIndex = async (req, res) => {
         res.status(500).send(error);
     }
 }
+
+exports.getPdf = async (req, res) => {
+    try{
+        const file = req.query.fileName;
+        const path = __dirname + '/files/' + file + '.pdf';
+        res.download(path);
+    }
+    catch(error){
+        res.status(500).send(error);
+    }
+}
     
