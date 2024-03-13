@@ -94,7 +94,9 @@ exports.selectedPagesByIndex = async (req, res) => {
 exports.getPdf = async (req, res) => {
     try{
         const file = req.query.fileName;
+        console.log(file);
         const path = __dirname + '/files/' + file + '.pdf';
+        console.log(path);
         res.download(path);
     }
     catch(error){
