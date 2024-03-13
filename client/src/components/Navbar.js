@@ -17,6 +17,9 @@ const Navbar = () => {
             <li>
               <Link to='/getPdf'>Get PDF</Link>
             </li>
+            <li>
+              <Link to='/cloudinaryfileupload'>Cloudinary File Upload</Link>
+            </li>
         </nav>
         <Outlet/>
     </div>

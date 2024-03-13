@@ -5,6 +5,7 @@ import LocalFileUpload from '../src/components/LocalFileUpload'
 import Navbar from '../src/components/Navbar'
 import MergePdfs from './components/MergePdfs';
 import GetPdf from './components/GetPdf';
+import CloudinaryFileUpload from './components/CloudinaryFileUpload';
 
 
 function App() {
@@ -30,6 +31,10 @@ function App() {
                 {
                   path: '/getPdf',
                   element: <GetPdf/>
+                },
+                {
+                  path: '/cloudinaryfileupload',
+                  element: <CloudinaryFileUpload/>
                 }
               ]
           },

@@ -1,5 +1,7 @@
 const { PDFDocument } = require("pdf-lib");
 const { writeFileSync, readFileSync } = require("fs");
+const File = require('../model/File.js');
+const cloudinary = require('cloudinary').v2;
 
 //localfileupload -> handler function for file upload
 exports.localFileUpload = async (req, res) => {
@@ -103,4 +105,42 @@ exports.getPdf = async (req, res) => {
         res.status(500).send(error);
     }
 }
-    
+
+exports.uploadFileToCloudinary = async (req, res) => {
+    try {
+        console.log("uploadFileToCloduinary function called")
+        const { folder, quality } = req.body;
+        const file = req.files.file
+        console.log("body fetced -> " + file, folder, quality);
+        const result = await uploadFileToCloudinaryFunction(file, folder, quality);
+
+        const fileData = File({
+            name: result.original_filename,
+            url: result.secure_url,
+            cloudinary_id: result.public_id,
+        });
+        await fileData.save();
+
+
+        res.json({
+            success: true,
+            msg: 'File uploaded to cloudinary successfully && save to db successfully',
+            result
+        });
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
+async function uploadFileToCloudinaryFunction(file, folder, quality){
+    try {
+        const options = { folder };
+        options.resource_type = "auto";
+        if(quality){ options.quality = quality; }
+
+        const result = await cloudinary.uploader.upload(file.tempFilePath, options);
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+}

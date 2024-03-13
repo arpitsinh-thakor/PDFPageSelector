@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 const fileSchema = new mongoose.Schema({
@@ -7,7 +6,10 @@ const fileSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    imageUrl: {
+    url: {
+        type: String,
+    },
+    cloudinary_id: {
         type: String,
     },
 });
