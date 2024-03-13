@@ -12,13 +12,19 @@ app.use(cors());
 app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
 
-// mongoose.connect(process.env.URI)
-
 const fileupload = require('express-fileupload');
 app.use(fileupload({
     useTempFiles: true,
     tempFileDir: '/tmp/'
 }));
+
+//connect to database
+const db = require('./config/database');
+db.connect();
+
+//cloud connect
+const cloudinary = require('./config/cloudinary');
+cloudinary.cloudinaryConnect();
 
 app.use('/api/v1', pdfRoutes);
 
