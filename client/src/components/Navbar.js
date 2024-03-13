@@ -20,6 +20,12 @@ const Navbar = () => {
             <li>
               <Link to='/cloudinaryfileupload'>Cloudinary File Upload</Link>
             </li>
+            <li>
+              <Link to='/getFiles'>Download File</Link>
+            </li>
+            <li>
+              <Link to='/getLocalFilesFromFolder'>Get Local Files From Folder</Link>
+            </li>
         </nav>
         <Outlet/>
     </div>

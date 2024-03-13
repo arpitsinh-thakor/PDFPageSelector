@@ -1,5 +1,6 @@
 const { PDFDocument } = require("pdf-lib");
 const { writeFileSync, readFileSync } = require("fs");
+const fs = require('fs');
 const File = require('../model/File.js');
 const cloudinary = require('cloudinary').v2;
 
@@ -128,6 +129,40 @@ exports.uploadFileToCloudinary = async (req, res) => {
             result
         });
     } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
+exports.getFiles = async (req, res) => {
+    try {
+        const files = await File.find();
+        res.json(files);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
+exports.getLocalFilesFromFolder = async (req, res) => {
+    try{
+        const path = __dirname + '/files/';
+        const files = getFilesFromFolderFunction(path);
+        res.json(files);
+    }
+    catch(error){
+        res.status
+    }
+}
+function getFilesFromFolderFunction(path){
+    const files = fs.readdirSync(path);
+    return files;
+}
+
+exports.getPath = async (req, res) => {
+    try{
+        const path = __dirname + '/files/';
+        res.json(path);
+    }
+    catch(error){
         res.status(500).send(error);
     }
 }

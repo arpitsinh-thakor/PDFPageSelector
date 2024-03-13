@@ -6,6 +6,8 @@ import Navbar from '../src/components/Navbar'
 import MergePdfs from './components/MergePdfs';
 import GetPdf from './components/GetPdf';
 import CloudinaryFileUpload from './components/CloudinaryFileUpload';
+import DownloadFile from './components/DownloadFile';
+import GetFilesFromLocal from './components/GetFilesFromLocal';
 
 
 function App() {
@@ -35,13 +37,16 @@ function App() {
                 {
                   path: '/cloudinaryfileupload',
                   element: <CloudinaryFileUpload/>
-                }
+                },
+                {
+                  path: "/getFiles",
+                  element: <DownloadFile/>,
+                },
+                {
+                  path: "/getLocalFilesFromFolder",
+                  element: <GetFilesFromLocal/>,
+                },
               ]
-          },
-          {
-              path: "/localfileupload",
-              element: <LocalFileUpload/>,
-              
           },
       ]
   )
