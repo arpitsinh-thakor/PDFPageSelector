@@ -37,7 +37,7 @@ const GetFileDB = () => {
                fileUrl && <div>
                     <h2>File</h2>
                     <a href={fileUrl} download >Download File</a>
-                    <embed src={fileUrl} type='application/auto' width="100%" height="600px" />
+                    <embed src={fileUrl} type='application/pdf' width="100%" height="600px" />
                 </div>      
         }
     </div>
