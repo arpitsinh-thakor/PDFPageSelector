@@ -26,7 +26,7 @@ const FileUploadDB = () => {
         }
     }
   return (
-    <div>
+    <div >
         <h1>File Upload DB</h1>
 
             <input type="file" name="file" onChange={handleFile}/>

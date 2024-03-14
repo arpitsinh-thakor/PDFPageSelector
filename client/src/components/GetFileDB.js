@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import { Document, Page, pdfjs } from 'react-pdf';
 import { PDFDocument, PDFPage } from 'pdf-lib';
-import { set } from 'mongoose';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 
