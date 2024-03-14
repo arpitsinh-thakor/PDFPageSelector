@@ -8,9 +8,6 @@ const GetFileDB = () => {
     const [id, setId] = useState('')
     const [fileUrl, setFileUrl] = useState(null);
 
-    const handleId = (e) => {
-        setId(e.target.value)
-    }
     const getFile = async () => {
         const formData = new FormData()
         console.log("getfile called - "+id)
@@ -71,7 +68,6 @@ const GetFileDB = () => {
     }
 
     const [allFiles, setAllFiles] = useState([])
-    const[selectedFile, setSelectedFile] = useState(null);
     useEffect(() => {
         console.log("useEffect called")
         const getFiles = async () => {
@@ -100,11 +96,11 @@ const GetFileDB = () => {
         </div>
         <div>
             {
-                selectedFile && <button className='p-2 min-w-fit text-white bg-sky-500 border border-transparent rounded-md shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500'
+                id && <button className='p-2 min-w-fit text-white bg-sky-700 border border-transparent rounded-md shadow-sm hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 font-serif font-bold'
                 onClick={getFile}>Load File</button>
             }
         </div>
-        <button className='p-2 min-w-fit text-white bg-red-500 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500'
+        <button className='p-2 min-w-fit text-white bg-red-500 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 font-serif font-bold'
             onClick={handlePDFViewer}>
             {pdfViewer ? 'Hide PDF Viewer' : 'Show PDF Viewer'}
         </button>
@@ -112,7 +108,7 @@ const GetFileDB = () => {
             {
                 pdfViewer && fileUrl && <div className='flex flex-col justify-center items-center gap-2'>
                         <a href={fileUrl} download 
-                            className='p-2 min-w-fit text-white bg-green-500 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
+                            className='p-2 min-w-fit text-white bg-green-500 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 font-serif font-bold'
                             >Download Original File</a>
                         <embed src={fileUrl} type='application/pdf' width="80%" height="500px" 
                             className='rounded-md  border-8 border-black  hover:shadow-lg cursor-pointer transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-120 border-double '
@@ -123,9 +119,9 @@ const GetFileDB = () => {
 
         {/* //select pages by button to download */}
         <div className=' flex flex-col items-center w-full gap-2'>
-            <h2 className='text-2xl font-bold'
+            <h2 className='text-2xl font-bold bg-slate-300 p-4 bottom-2 border-2 border-black rounded-md shadow-sm hover:bg-slate-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 font-serif '
                 >Select Pages to Download</h2>
-            <button className='p-2 min-w-fit text-white bg-green-500 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
+            <button className='p-2 min-w-fit text-white bg-green-500 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 font-serif font-bold'
                 onClick={downloadSelectedPagesFile}>Download Selected Pages PDF</button>
             {/* //loop checkboxes for all pages */}
             <div>
@@ -143,7 +139,8 @@ const GetFileDB = () => {
                                 type="checkbox" value={index + 1} 
                                 onChange={handleCheckbox}
                             />
-                            <p className={`p-2  bg-sky-500 border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500  w-full rounded-md sm:text-sm focus:ring-1
+                            <p className={`p-2 text-center font-bold text-xl
+                             bg-sky-500 border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500  w-full rounded-md sm:text-sm focus:ring-1
                                     ${selectedPages.includes(index+1) ? 'border-2 border-black  bg-sky-500' : 'bg-orange-300'}
                                             `}
                                 onClick={handleCheckbox}>{`Page -> ${index+1}`}</p>

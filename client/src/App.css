@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active{
+    color:chartreuse;
+    border-bottom: 2px solid chartreuse;
+}
+
+nav li:hover{
+    color:chartreuse;
+    border-bottom: 2px solid chartreuse;
+}
