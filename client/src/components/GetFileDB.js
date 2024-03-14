@@ -66,7 +66,7 @@ const GetFileDB = () => {
     }
 
   return (
-    <div>
+    <div className='bg-red-500'>
         <h1>Get File from DB</h1>
         <input type="text" onChange={handleId} placeholder="Enter ID" />
         <button onClick={getFile}>Get File</button>
@@ -78,23 +78,11 @@ const GetFileDB = () => {
                 </div>      
         }
 
-        {/* //download selected pages of pdf */}
-        <Document file={fileUrl} onLoadSuccess={onDocumentLoadSuccess}>
-            {/* //loop all pages */}
-            {
-                Array.from(
-                    new Array(numPages),
-                    (el, index) => (
-                        <Page key={`page_${index + 1}`} pageNumber={index + 1} />
-                    ),
-                )
-            }
-        </Document>
-
         {/* //select pages by button to download */}
-        <div>
+        <div className='bg-green-500 flex flex-col items-center '>
             <h2>Select Pages to Download</h2>
             {/* //loop checkboxes for all pages */}
+            <div>
             {
                 Array.from(
                     new Array(numPages),
@@ -108,9 +96,35 @@ const GetFileDB = () => {
                     )
                 )
             }
+            </div>
             <button onClick={downloadSelectedPagesFile}>Download</button>
 
         </div>
+
+        {/* //download selected pages of pdf */}
+        <div>
+        <Document className='bg-red-500'
+            file={fileUrl} onLoadSuccess={onDocumentLoadSuccess}>
+            {/* //loop all pages */}
+            {
+                Array.from(
+                    new Array(numPages),
+                    (el, index) => (
+                        <div className='bg-red-500 flex flex-row mx-auto items-center justify-center'>
+                            <div>
+                            <p className='h-[20px]'>{`Page - ${index + 1}`}</p>
+                            <Page 
+                                className='bg-orange-300 display: inline-block h-[900px] w-auto'
+                                key={`page_${index + 1}`} pageNumber={index + 1} />
+                            </div>
+                        </div>
+                    ),
+                )
+            }
+        </Document>
+        </div>
+
+        
 
     </div>
 
