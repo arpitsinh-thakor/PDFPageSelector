@@ -213,3 +213,12 @@ exports.getFileDB = async (req, res) => {
         ).send(error);
     }
 }
+
+exports.getAllFilesDB = async (req, res) => {
+    try {
+        const files = await Pdf.find();
+        res.json(files);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
