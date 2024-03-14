@@ -2,6 +2,9 @@ const { PDFDocument } = require("pdf-lib");
 const { writeFileSync, readFileSync } = require("fs");
 const fs = require('fs');
 const File = require('../model/File.js');
+const FileDB = require('../model/FileDB.js');
+const Pdf = require("../model/pdf.js");
+const { identityMatrix } = require("pdf-lib/cjs/types/matrix.js");
 const cloudinary = require('cloudinary').v2;
 
 //localfileupload -> handler function for file upload
@@ -177,5 +180,36 @@ async function uploadFileToCloudinaryFunction(file, folder, quality){
         return result;
     } catch (error) {
         console.log(error);
+    }
+}
+
+exports.uploadFileToDB = async (req, res) => {
+    try {
+        const file = req.files.file;
+        const fileBuffer = readFileSync(file.tempFilePath);
+        const fileData = Pdf({
+            data: fileBuffer,
+            filename: file.name,
+        });
+        await fileData.save();
+        
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
+exports.getFileDB = async (req, res) => {
+    try {
+        const id = req.body.id;
+        const file = await Pdf.findById(id);
+        //conver to pdf
+        const fileBuffer = file.data;
+        const path = __dirname + '/files/' + file.filename;
+        writeFileSync(path, fileBuffer);
+
+        res.download(path);
+    } catch (error) {
+        res.status(500
+        ).send(error);
     }
 }

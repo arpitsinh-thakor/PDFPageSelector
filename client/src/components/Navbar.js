@@ -26,6 +26,12 @@ const Navbar = () => {
             <li>
               <Link to='/getLocalFilesFromFolder'>Get Local Files From Folder</Link>
             </li>
+            <li>
+              <Link to='/fileUploadDB'>File Upload DB</Link>
+            </li>
+            <li>
+              <Link to='/getFileDB'>Get File DB</Link>
+            </li>
         </nav>
         <Outlet/>
     </div>

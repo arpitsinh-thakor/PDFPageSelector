@@ -8,6 +8,8 @@ import GetPdf from './components/GetPdf';
 import CloudinaryFileUpload from './components/CloudinaryFileUpload';
 import DownloadFile from './components/DownloadFile';
 import GetFilesFromLocal from './components/GetFilesFromLocal';
+import FileUploadDB from './components/FileUploadDB';
+import GetFileDB from './components/GetFileDB';
 
 
 function App() {
@@ -46,6 +48,14 @@ function App() {
                   path: "/getLocalFilesFromFolder",
                   element: <GetFilesFromLocal/>,
                 },
+                {
+                  path: '/fileUploadDB',
+                  element: <FileUploadDB/>
+                },
+                {
+                  path: 'getFileDB',
+                  element: <GetFileDB/>
+                }
               ]
           },
       ]
