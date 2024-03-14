@@ -2,7 +2,6 @@ const { PDFDocument } = require("pdf-lib");
 const { writeFileSync, readFileSync } = require("fs");
 const fs = require('fs');
 const File = require('../model/File.js');
-const FileDB = require('../model/FileDB.js');
 const Pdf = require("../model/pdf.js");
 const { identityMatrix } = require("pdf-lib/cjs/types/matrix.js");
 const cloudinary = require('cloudinary').v2;
@@ -56,6 +55,16 @@ exports.mergePdfs = async (req, res) => {
         const path = __dirname + '/mergedFiles/' + `${file1.name.split('.')[0]}&${file2.name.split('.')[0]}` + '.pdf';
         
         writeFileSync(path, mergedPdf);
+
+
+       //save to db
+         const fileBuffer = readFileSync(path);
+            const fileData = Pdf({
+                data: fileBuffer,
+                filename: `${file1.name.split('.')[0]}&${file2.name.split('.')[0]}` + '.pdf',
+            });
+
+            await fileData.save();
         
         res.json({
             success: true,
@@ -119,7 +128,7 @@ exports.uploadFileToCloudinary = async (req, res) => {
         const result = await uploadFileToCloudinaryFunction(file, folder, quality);
 
         const fileData = File({
-            name: result.original_filename,
+            name: file.name,
             url: result.secure_url,
             cloudinary_id: result.public_id,
         });
@@ -160,15 +169,6 @@ function getFilesFromFolderFunction(path){
     return files;
 }
 
-exports.getPath = async (req, res) => {
-    try{
-        const path = __dirname + '/files/';
-        res.json(path);
-    }
-    catch(error){
-        res.status(500).send(error);
-    }
-}
 
 async function uploadFileToCloudinaryFunction(file, folder, quality){
     try {

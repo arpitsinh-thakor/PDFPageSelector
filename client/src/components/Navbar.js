@@ -1,4 +1,4 @@
-import { Link , NavLink, Route, Outlet } from 'react-router-dom'
+import {NavLink, Outlet } from 'react-router-dom'
 import '../App.css'
 
 const Navbar = () => {
@@ -21,10 +21,6 @@ const Navbar = () => {
                 <li>
                   <NavLink className={`text-white p-2 font-bold text-xl`} 
                   to='/mergePdfs'>Merge PDFs</NavLink>
-                </li>
-                <li>
-                  <NavLink className={`text-white p-2 font-bold text-xl`} 
-                  to='/getPdf'>Get PDF</NavLink>
                 </li>
                 <li>
                   <NavLink className={`text-white p-2 font-bold text-xl`} 

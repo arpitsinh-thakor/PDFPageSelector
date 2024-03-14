@@ -4,12 +4,12 @@ import {createBrowserRouter, RouterProvider,} from "react-router-dom";
 import LocalFileUpload from '../src/components/LocalFileUpload'
 import Navbar from '../src/components/Navbar'
 import MergePdfs from './components/MergePdfs';
-import GetPdf from './components/GetPdf';
 import CloudinaryFileUpload from './components/CloudinaryFileUpload';
 import DownloadFile from './components/DownloadFile';
 import GetFilesFromLocal from './components/GetFilesFromLocal';
 import FileUploadDB from './components/FileUploadDB';
 import GetFileDB from './components/GetFileDB';
+import { Toaster } from 'react-hot-toast';
 
 
 function App() {
@@ -31,10 +31,6 @@ function App() {
                 {
                   path: "/mergePdfs",
                   element: <MergePdfs/>,
-                },
-                {
-                  path: '/getPdf',
-                  element: <GetPdf/>
                 },
                 {
                   path: '/cloudinaryfileupload',
@@ -64,6 +60,7 @@ function App() {
   return (
     <div className=''>
         <RouterProvider router={router}/>
+        <Toaster/>
     </div>
   );
 }

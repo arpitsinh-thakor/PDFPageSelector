@@ -22,16 +22,17 @@ const GetFilesFromLocal = () => {
     }, [])
 
   return (
-    <div>
-        <h1>Get Files From Local</h1>
+    <div className='flex flex-col items-center'>
+        <h1 className='font-bold text-2xl'>Get Files From Local</h1>
         {
-            files === null? 'No files found' : 'founded files are:'
+            loading? 'No files found' : 'founded files are:'
         }
         {
             loading? 'Loading...' : files.map((file, index) => (
-                <div key={index}>
-                    <p>{file}</p>
-                </div>
+                <div className='flex flex-row gap-4 p-2 m-1 bg-gray-100 hover:bg-gray-200 transition duration-300 ease-in-out rounded-md w-72 text-center font-serif font-bold text-xl'
+                    key={index}>
+                        <p>{file}</p>
+                    </div>
             ))
         }
         

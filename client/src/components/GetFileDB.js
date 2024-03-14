@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { Document, Page, pdfjs } from 'react-pdf';
 import { PDFDocument, PDFPage } from 'pdf-lib';
+import toast from 'react-hot-toast';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 
@@ -20,6 +21,7 @@ const GetFileDB = () => {
         const file = new Blob([data], {type: 'application/pdf'})
         const fileURL = URL.createObjectURL(file)
         setFileUrl(fileURL)
+        toast.success('Files Loaded Successfully')
     }    
 
     const [numPages, setNumPages] = useState(null);
@@ -51,7 +53,7 @@ const GetFileDB = () => {
         const file = new Blob([pdfBytes], {type: 'application/pdf'});
         const fileURL = URL.createObjectURL(file);
         downloadFile(fileURL);       
-
+        toast.success('Selected Pages Downloaded Successfully')
     }
 
     const downloadFile = (fileURL) => {
@@ -83,7 +85,7 @@ const GetFileDB = () => {
   return (
     <div className='flex flex-col items-center m-4 gap-5 w-full'>
         <h1 className='text-2xl font-bold '>Get File from DB</h1>
-        <div className='flex flex-row p-2 gap-2'>
+        <div className='flex flex-row flex-wrap p-2 gap-2'>
            {
                //display all files in db and select one
                 allFiles && allFiles.map(file => (
@@ -119,9 +121,9 @@ const GetFileDB = () => {
 
         {/* //select pages by button to download */}
         <div className=' flex flex-col items-center w-full gap-2'>
-            <h2 className='text-2xl font-bold bg-slate-300 p-4 bottom-2 border-2 border-black rounded-md shadow-sm hover:bg-slate-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 font-serif '
+            <h2 className='text-2xl font-bold bg-slate-300 p-2 bottom-2 border-2 border-black rounded-md shadow-sm hover:bg-slate-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 font-serif '
                 >Select Pages to Download</h2>
-            <button className='p-2 min-w-fit text-white bg-green-500 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 font-serif font-bold'
+            <button className='p-2 px-4 text-white bg-green-500 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 font-serif font-bold'
                 onClick={downloadSelectedPagesFile}>Download Selected Pages PDF</button>
             {/* //loop checkboxes for all pages */}
             <div>
