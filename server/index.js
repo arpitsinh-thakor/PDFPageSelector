@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const pdfRoutes = require('./routes/pdfRoutes');
 require('dotenv').config()
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 const path = require('path')
 
 app.use(express.static(path.join(__dirname, "public")));
