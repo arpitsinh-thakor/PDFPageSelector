@@ -215,8 +215,9 @@ exports.getFileDB = async (req, res) => {
 }
 
 exports.getAllFilesDB = async (req, res) => {
-    try {
-        const files = await Pdf.find();
+    try {  
+        //return only id and filename
+        const files = await Pdf.find().select('filename');
         res.json(files);
     } catch (error) {
         res.status(500).send(error);

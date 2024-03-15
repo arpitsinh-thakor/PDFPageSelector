@@ -10,6 +10,7 @@ import GetFilesFromLocal from './components/GetFilesFromLocal';
 import FileUploadDB from './components/FileUploadDB';
 import GetFileDB from './components/GetFileDB';
 import { Toaster } from 'react-hot-toast';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -58,7 +59,7 @@ function App() {
   )
 
   return (
-    <div className=''>
+    <div >
         <RouterProvider router={router}/>
         <Toaster/>
     </div>

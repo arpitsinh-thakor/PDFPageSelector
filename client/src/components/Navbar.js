@@ -1,5 +1,6 @@
 import {NavLink, Outlet } from 'react-router-dom'
 import '../App.css'
+import Footer from './Footer'
 
 const Navbar = () => {
   return (
@@ -13,7 +14,7 @@ const Navbar = () => {
                   to="/">Home</NavLink>
                 </li>
               </div>
-              <div className='w-9/12 flex flex-row flex-wrap gap-7 justify-center'>
+              <div className='w-9/12 flex flex-row flex-wrap gap-3 justify-center'>
                 <li>
                   <NavLink className={`text-white p-2 font-bold text-xl`} 
                   to="/localfileupload">Local File Upload</NavLink>
@@ -46,6 +47,7 @@ const Navbar = () => {
           </nav>
         </div>
         <Outlet/>
+        
     </div>
     
   )
