@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import { Document, Page, pdfjs } from 'react-pdf';
+import dotenv from 'dotenv'
 import { PDFDocument, PDFPage } from 'pdf-lib';
 import toast from 'react-hot-toast';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+dotenv.config()
 
 
 const GetFileDB = () => {
@@ -13,7 +15,7 @@ const GetFileDB = () => {
         const formData = new FormData()
         console.log("getfile called - "+id)
         formData.append('id', id)
-        const response = await fetch('http://localhost:4000/api/v1/getFileDB', {
+        const response = await fetch(process.env.SERVER +'api/v1/getFileDB', {
             method: 'POST',
             body: formData
         })

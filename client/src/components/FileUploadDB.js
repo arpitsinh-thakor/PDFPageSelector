@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const FileUploadDB = () => {
     const [file, setFile] = useState(null)
@@ -14,7 +16,7 @@ const FileUploadDB = () => {
         formData.append('file', file)
 
         try {
-            const res = await fetch('http://localhost:4000/api/v1/uploadFileToDB', {
+            const res = await fetch(process.env.SERVER +'api/v1/uploadFileToDB', {
                 method: 'POST',
                 body: formData
             })

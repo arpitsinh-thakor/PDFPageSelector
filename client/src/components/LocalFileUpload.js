@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const LocalFileUpload = () => {
   const [file, setFile] = useState(null)
@@ -12,7 +14,7 @@ const LocalFileUpload = () => {
   const handleUploadClick = () => {
     const formData = new FormData()
     formData.append('file', file)
-    fetch('http://localhost:4000/api/v1/localFileUpload', {
+    fetch(process.env.SERVER +'api/v1/localFileUpload', {
       method: 'POST',
       body: formData
     })

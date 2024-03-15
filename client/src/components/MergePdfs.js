@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import toast from 'react-hot-toast'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const MergePdfs = () => {
   const [file1, setFile1] = useState(null)
@@ -16,7 +18,7 @@ const MergePdfs = () => {
     event.preventDefault()
     
     const formData = new FormData(event.target)
-    fetch('http://localhost:4000/api/v1/mergePdfs', {
+    fetch(process.env.SERVER +'api/v1/mergePdfs', {
       method: 'POST',
       body: formData
     })
@@ -35,7 +37,7 @@ const MergePdfs = () => {
           >Merge PDFs</h1>
       <form 
             className='flex flex-col gap-4'
-            action="http://localhost:4000/api/v1/mergePdfs" 
+            action= {`${process.env.SERVER}"api/v1/mergePdfs"`}
             method="post" encType="multipart/form-data"
             onSubmit={handleSubmit}
             >

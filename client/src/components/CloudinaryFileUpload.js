@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const CloudinaryFileUpload = () => {
 
@@ -18,7 +20,7 @@ const CloudinaryFileUpload = () => {
     formData.append('file', file)
     formData.append('folder', 'cloudinaryFileUpload')
 
-    fetch('http://localhost:4000/api/v1/uploadFileToCloudinary', {
+    fetch(process.env.SERVER +'api/v1/uploadFileToCloudinary', {
       method: 'POST',
       body: formData
     })
