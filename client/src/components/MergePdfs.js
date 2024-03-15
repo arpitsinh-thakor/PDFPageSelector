@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import toast from 'react-hot-toast'
-import dotenv from 'dotenv'
-dotenv.config()
+
 
 const MergePdfs = () => {
   const [file1, setFile1] = useState(null)
@@ -18,7 +17,7 @@ const MergePdfs = () => {
     event.preventDefault()
     
     const formData = new FormData(event.target)
-    fetch(process.env.SERVER +'api/v1/mergePdfs', {
+    fetch('https://pdfpageselector-2s6w.onrender.com/api/v1/mergePdfs', {
       method: 'POST',
       body: formData
     })

@@ -1,13 +1,12 @@
 import React, { useEffect, useState} from 'react'
-import dotenv from 'dotenv'
-dotenv.config()
+
 
 const DownloadFile = () => {
     const [files, setFiles] = useState([])
     useEffect(() => {
         const fetchFiles = async () => {
             try {
-                const res = await fetch(process.env.SERVER +'api/v1/getFiles')
+                const res = await fetch('https://pdfpageselector-2s6w.onrender.com/api/v1/getFiles')
                 const data = await res.json()
                 setFiles(data)
             } catch (error) {

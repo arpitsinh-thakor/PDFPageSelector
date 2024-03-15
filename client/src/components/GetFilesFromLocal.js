@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import dotenv from 'dotenv'
-dotenv.config()
 
 const GetFilesFromLocal = () => {
     const [files, setFiles] = useState([])
@@ -11,7 +9,7 @@ const GetFilesFromLocal = () => {
     useEffect(() => {
         const getFiles = async () => {
             try {
-                const res = await fetch(process.env.SERVER +'api/v1/getLocalFilesFromFolder')
+                const res = await fetch('https://pdfpageselector-2s6w.onrender.com/api/v1/getLocalFilesFromFolder')
                 const data = await res.json()
                 setFiles(data)
                 setLoading(false)
