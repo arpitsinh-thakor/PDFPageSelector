@@ -3,7 +3,7 @@ const router = require('express').Router();
 const { localFileUpload , mergePdfs, selectedPagesByIndex, 
     getPdf, uploadFileToCloudinary, getFiles, 
     getLocalFilesFromFolder, uploadFileToDB,
-    getFileDB, getAllFilesDB} = require('../controllers/fileUpload');
+    getFileDB, getAllFilesDB, temp} = require('../controllers/fileUpload');
 
 router.post('/localFileUpload', localFileUpload);
 router.post('/mergePdfs', mergePdfs);
@@ -15,5 +15,6 @@ router.get('/getLocalFilesFromFolder', getLocalFilesFromFolder)
 router.post('/uploadFileToDB', uploadFileToDB)
 router.post('/getFileDB', getFileDB)
 router.get('/getAllFilesDB', getAllFilesDB)
+router.get('/temp', temp)
 
 module.exports = router;

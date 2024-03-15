@@ -222,3 +222,15 @@ exports.getAllFilesDB = async (req, res) => {
         res.status(500).send(error);
     }
 }
+
+exports.temp = async (req, res) => {
+    try{
+        res.json({
+            success: true,
+            msg: 'Temp function called'
+        });
+    }
+    catch(error){
+        res.status(500).send(error);
+    }
+}
