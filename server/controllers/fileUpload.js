@@ -2,7 +2,7 @@ const { PDFDocument } = require("pdf-lib");
 const { writeFileSync, readFileSync } = require("fs");
 const fs = require('fs');
 const File = require('../model/File.js');
-const Pdf = require("../model/pdf.js");
+const Pdf = require("../model/Pdf.js");
 const { identityMatrix } = require("pdf-lib/cjs/types/matrix.js");
 const cloudinary = require('cloudinary').v2;
 
